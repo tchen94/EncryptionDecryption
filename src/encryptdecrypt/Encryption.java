@@ -22,4 +22,19 @@ public class Encryption {
         }
         return encrypted.toString();
     }
+
+    public String caesarCipher(String phrase, int num) {
+        StringBuilder encrypted = new StringBuilder(phrase);
+
+        for (int x = 0; x < phrase.length(); x++) {
+            for (int y = 0; y < abc.length; y++) {
+                if (phrase.charAt(x) == abc[y] && y + num > abc.length) {
+                    encrypted.setCharAt(x, abc[(y + num) - 26]);
+                } else if (phrase.charAt(x) == abc[y]) {
+                    encrypted.setCharAt(x, abc[y + num]);
+                }
+            }
+        }
+        return encrypted.toString();
+    }
 }
