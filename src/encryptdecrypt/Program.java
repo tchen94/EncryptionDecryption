@@ -8,6 +8,9 @@ public class Program {
         String phrase = "we found a treasure!";
         System.out.println(protect.atbashCipher(phrase));
 
-        System.out.println(protect.reverseABCEncryption(phrase));
+        // Caesar Cipher
+        String phraseInput = scanner.nextLine();
+        int numInput = Integer.parseInt(scanner.nextLine());
+        System.out.println(protect.caesarCipher(phraseInput, numInput));
     }
 }
