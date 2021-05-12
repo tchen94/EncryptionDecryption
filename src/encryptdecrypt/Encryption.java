@@ -10,7 +10,7 @@ public class Encryption {
                 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'};
     }
 
-    public String reverseABCEncryption(String phrase) {
+    public String atbashCipher(String phrase) {
         StringBuilder encrypted = new StringBuilder(phrase);
 
         for (int x = 0; x < phrase.length(); x++) {
