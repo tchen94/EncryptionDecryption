@@ -1,13 +1,17 @@
+import java.util.Scanner;
+
 public class Encryption {
 
     final private char[] abc;
     final private char[] cba;
+    final private Scanner scanner;
 
     public Encryption() {
         this.abc = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         this.cba = new char[]{'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n',
                 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'};
+        this.scanner = new Scanner(System.in);
     }
 
     public String atbashCipher(String phrase) {
