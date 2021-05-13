@@ -1,16 +1,20 @@
+import java.util.Scanner;
+
 public class Encryption {
 
     final private char[] abc;
     final private char[] cba;
+    final private Scanner scanner;
 
     public Encryption() {
         this.abc = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         this.cba = new char[]{'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n',
                 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'};
+        this.scanner = new Scanner(System.in);
     }
 
-    public String reverseABCEncryption(String phrase) {
+    public String atbashCipher(String phrase) {
         StringBuilder encrypted = new StringBuilder(phrase);
 
         for (int x = 0; x < phrase.length(); x++) {
@@ -21,5 +25,51 @@ public class Encryption {
             }
         }
         return encrypted.toString();
+    }
+
+    public String caesarCipher(String phrase, int num) {
+        StringBuilder encrypted = new StringBuilder(phrase);
+
+        for (int x = 0; x < phrase.length(); x++) {
+            for (int y = 0; y < abc.length; y++) {
+                if (phrase.charAt(x) == abc[y] && y + num > abc.length) {
+                    encrypted.setCharAt(x, abc[(y + num) - 26]);
+                } else if (phrase.charAt(x) == abc[y]) {
+                    encrypted.setCharAt(x, abc[y + num]);
+                }
+            }
+        }
+        return encrypted.toString();
+    }
+
+    public String encrypt(String phrase, int offset) {
+        StringBuilder encrypted = new StringBuilder();
+
+        for (char character : phrase.toCharArray()) {
+            int currentPos = character - ' ';
+            int newPos = (currentPos + offset) % 126; //94 is the Unicode difference from SPACE to ~
+            char newChar = (char)(' ' + newPos);
+            encrypted.append(newChar);
+        }
+        return encrypted.toString();
+    }
+
+    public String decrypt(String phrase, int offset) {
+        return encrypt(phrase, 126 - (offset % 126));
+    }
+
+    public void start() {
+        String operation = scanner.nextLine();
+        String phrase = scanner.nextLine();
+        int offset = Integer.parseInt(scanner.nextLine());
+
+        switch (operation) {
+            case "enc":
+                System.out.println(encrypt(phrase, offset));
+                break;
+            case "dec":
+                System.out.println(decrypt(phrase, offset));
+                break;
+        }
     }
 }
