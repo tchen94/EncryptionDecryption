@@ -41,4 +41,35 @@ public class Encryption {
         }
         return encrypted.toString();
     }
+
+    public String encrypt(String phrase, int offset) {
+        StringBuilder encrypted = new StringBuilder();
+
+        for (char character : phrase.toCharArray()) {
+            int currentPos = character - ' ';
+            int newPos = (currentPos + offset) % 126; //94 is the Unicode difference from SPACE to ~
+            char newChar = (char)(' ' + newPos);
+            encrypted.append(newChar);
+        }
+        return encrypted.toString();
+    }
+
+    public String decrypt(String phrase, int offset) {
+        return encrypt(phrase, 126 - (offset % 126));
+    }
+
+    public void start() {
+        String operation = scanner.nextLine();
+        String phrase = scanner.nextLine();
+        int offset = Integer.parseInt(scanner.nextLine());
+
+        switch (operation) {
+            case "enc":
+                System.out.println(encrypt(phrase, offset));
+                break;
+            case "dec":
+                System.out.println(decrypt(phrase, offset));
+                break;
+        }
+    }
 }
