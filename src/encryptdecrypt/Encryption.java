@@ -85,19 +85,4 @@ public class Encryption {
     public String decrypt(String phrase, int offset) {
         return encrypt(phrase, 126 - (offset % 126));
     }
-
-    public void start() {
-        String operation = scanner.nextLine();
-        String phrase = scanner.nextLine();
-        int offset = Integer.parseInt(scanner.nextLine());
-
-        switch (operation) {
-            case "enc":
-                System.out.println(encrypt(phrase, offset));
-                break;
-            case "dec":
-                System.out.println(decrypt(phrase, offset));
-                break;
-        }
-    }
 }
