@@ -4,14 +4,42 @@ public class Encryption {
 
     final private char[] abc;
     final private char[] cba;
-    final private Scanner scanner;
+    private String mode;
+    private int key;
+    private String data;
 
     public Encryption() {
         this.abc = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         this.cba = new char[]{'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n',
                 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'};
-        this.scanner = new Scanner(System.in);
+        this.mode = "enc";
+        this.key = 0;
+        this.data = "";
+    }
+
+    public void setMode(String option) {
+        this.mode = option.isEmpty() ? "enc" : option;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setData(String data) {
+        this.data = data.isEmpty() ? "" : data;
+    }
+
+    public String getData() {
+        return data;
     }
 
     public String atbashCipher(String phrase) {
